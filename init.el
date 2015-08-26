@@ -14,6 +14,15 @@
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
 
+
+;;----------------------------------------------------------------------------
+;; switch for some feature
+;;----------------------------------------------------------------------------
+(defconst *my-email-box-enabled* t) ;; Enable with t if want to turn on mail
+
+
+
+
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
@@ -134,6 +143,14 @@
 (when (file-exists-p (expand-file-name "init-local.el" user-emacs-directory))
   (error "Please move init-local.el to ~/.emacs.d/lisp"))
 (require 'init-local nil t)
+
+;;----------------------------------------------------------------------------
+;; Allow users to provide an optional "init-emailbox" containing email settings
+;;----------------------------------------------------------------------------
+(when (file-exists-p (expand-file-name "init-emailbox.el" user-emacs-directory))
+  (error "Please move init-emailbox.el to ~/.emacs.d/lisp"))
+(when *my-email-box-enabled*
+  (require 'init-emailbox.el))
 
 
 ;;----------------------------------------------------------------------------
