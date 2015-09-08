@@ -19,7 +19,7 @@
 ;; switch for some feature
 ;;----------------------------------------------------------------------------
 (defconst *my-email-box-enabled* t) ;; Enable with t if want to turn on mail
-
+(defconst *my-c-ide-enabled* t) ;; Enable c ide feature
 
 
 
@@ -154,7 +154,15 @@
 (when (file-exists-p (expand-file-name "init-emailbox.el" user-emacs-directory))
   (error "Please move init-emailbox.el to ~/.emacs.d/lisp"))
 (when *my-email-box-enabled*
-  (require 'init-emailbox.el))
+  (require 'init-emailbox))
+
+;;----------------------------------------------------------------------------
+;; Allow users to provide an optional "init-c-ide" containing c-ide settings
+;;----------------------------------------------------------------------------
+(when (file-exists-p (expand-file-name "init-c-ide.el" user-emacs-directory))
+  (error "Please move init-c-ide.el to ~/.emacs.d/lisp"))
+(when *my-c-ide-enabled*
+  (require 'init-c-ide))
 
 
 ;;----------------------------------------------------------------------------
